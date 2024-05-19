@@ -11,7 +11,7 @@ const _ = require('lodash');
 const ExampleModel = require('./models/exampleModel');
 
 // Connect to MongoDB database
-const mongo_url = "mongodb+srv://CodeSquadDevAdmin:1nnaXdLZVUeNRTG2@cluster0free.losq0cb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0Free";
+const mongo_url = "mongodb://atlas-sql-664916d1e099285a379adf93-qpem4.a.query.mongodb.net/test?ssl=true&authSource=admin";
 mongoose.connect(mongo_url, { useNewUrlParser: true, useUnifiedTopology: false });
 
 // Define GraphQL schema
