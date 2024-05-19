@@ -1,0 +1,18 @@
+{
+    "name": "node-inf301-codesquad",
+    "version": "1.0.0",
+    "scripts": {
+      "start": "nodemon -L server.js"
+    },
+    "dependencies": {
+      "nodemon": "^3.0.1",
+      "express": "^4.17.3",
+      "graphql": "^16.3.0",
+      "apollo-server-express": "^3.13.0",
+      "graphql-tools": "^9.0.1",
+      "body-parser": "^1.19.0",
+      "cors": "^2.8.5",
+      "lodash": "^4.17.21",
+      "mongoose": "^6.3.5"
+    }
+  }
