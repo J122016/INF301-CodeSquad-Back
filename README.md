@@ -37,6 +37,24 @@ query GetEntities {
   }
 }
 
+query GetUsuarios {
+  getUsuarios {
+    id
+    usuario
+    nombre
+    rut
+    mail
+  }
+}
+
+query GetRoles {
+  getRoles {
+    id
+    rol
+    nrol
+  }
+}
+
 query Query($getEntityId: String!) {
   getEntity(id: $getEntityId) {
     id
