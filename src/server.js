@@ -9,9 +9,11 @@ const _ = require('lodash');
 
 // Import models detallados
 const ExampleModel = require('./models/exampleModel');
+const UsuarioModel = require('./models/usuarioModel');
+const RolModel = require('./models/rolModel');
 
 // Connect to MongoDB database
-const mongo_url = "mongodb://atlas-sql-664916d1e099285a379adf93-qpem4.a.query.mongodb.net/test?ssl=true&authSource=admin";
+const mongo_url = "mongodb+srv://CodeSquadDevAdmin:vQpkNv91hajyyVSd@cluster0free.losq0cb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0Free";
 mongoose.connect(mongo_url, { useNewUrlParser: true, useUnifiedTopology: false });
 
 // Define GraphQL schema
@@ -19,6 +21,20 @@ const typeDefs = gql`
     type ModelOne {
         id: ID!
         nombre: String!
+    }
+
+    type Usuario {
+        id: ID!
+        usuario: String!
+        nombre: String!
+        rut: String!
+        mail: String!
+    }
+
+    type Rol {
+        id: ID!
+        rol: String!
+        nrol: String!
     }
 
     type Mensaje {
@@ -32,6 +48,8 @@ const typeDefs = gql`
 
     type Query {
         getEntities: [ModelOne]
+        getUsuarios: [Usuario]
+        getRoles: [Rol]
         getEntity(id: String!): ModelOne
     }
 
@@ -51,6 +69,14 @@ const resolvers = {
         },
         async getEntities(obj, { id }) {
             const entity = await ExampleModel.find();
+            return entity;
+        },
+        async getUsuarios(obj, { id }) {
+            const entity = await UsuarioModel.find();
+            return entity;
+        },
+        async getRoles(obj, { id }) {
+            const entity = await RolModel.find();
             return entity;
         }
         // Add queries as needed
