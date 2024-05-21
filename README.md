@@ -47,6 +47,25 @@ query GetUsuarios {
   }
 }
 
+query GetRol {
+  getRol(input: {nrol:"2"}) {
+    id
+    rol
+    nrol
+  }
+}
+
+query GetUsuarioRol {
+  getUsuarioRol(input: {nrol:"1"}) {
+    id
+    usuario
+    nombre
+    rut
+    mail
+    nrol
+  }
+}
+
 query GetRoles {
   getRoles {
     id

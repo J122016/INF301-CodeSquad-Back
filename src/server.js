@@ -11,6 +11,7 @@ const _ = require('lodash');
 const ExampleModel = require('./models/exampleModel');
 const UsuarioModel = require('./models/usuarioModel');
 const RolModel = require('./models/rolModel');
+const usuarioModel = require('./models/usuarioModel');
 
 // Connect to MongoDB database
 const mongo_url = "mongodb+srv://CodeSquadDevAdmin:vQpkNv91hajyyVSd@cluster0free.losq0cb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0Free";
@@ -29,6 +30,7 @@ const typeDefs = gql`
         nombre: String!
         rut: String!
         mail: String!
+        nrol: String!
     }
 
     type Rol {
@@ -42,6 +44,10 @@ const typeDefs = gql`
         mensaje: String!
     }
 
+    input RolFilter{
+        nrol: String!
+    }
+
     input ModelOneInput{
         nombre: String!
     }
@@ -51,6 +57,8 @@ const typeDefs = gql`
         getUsuarios: [Usuario]
         getRoles: [Rol]
         getEntity(id: String!): ModelOne
+        getUsuarioRol(input: RolFilter): [Usuario]
+        getRol(input: RolFilter): Rol
     }
 
     type Mutation {
@@ -73,6 +81,18 @@ const resolvers = {
         },
         async getUsuarios(obj, { id }) {
             const entity = await UsuarioModel.find();
+            return entity;
+        },
+        async getUsuarioRol(obj, { input }) {
+            const { nrol } = input;
+            const entitys = await UsuarioModel.find();
+            const entity = entitys.filter((a) => a.nrol == nrol);
+            return entity;
+        },
+        async getRol(obj, { input }) {
+            const { nrol } = input;
+            const entitys = await RolModel.find();
+            const entity = entitys.find((a) => a.nrol == nrol);
             return entity;
         },
         async getRoles(obj, { id }) {

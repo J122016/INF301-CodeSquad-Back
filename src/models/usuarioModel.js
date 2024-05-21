@@ -5,7 +5,8 @@ const usuarioSchema = new mongoose.Schema({
     usuario: String,
     nombre: String,
     rut: String,
-    mail: String
+    mail: String,
+    nrol: String
 });
 
 // Create the model using the defined schema
