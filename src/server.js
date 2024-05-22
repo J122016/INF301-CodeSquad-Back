@@ -15,6 +15,8 @@ const { tiposgql } = require('./archivos_gql/tipos')
 const { inputgql } = require('./archivos_gql/input')
 const { querygql } = require('./archivos_gql/query')
 const { mutationgql } = require('./archivos_gql/mutation')
+const { funcionquery } = require('./archivos_gql/funcion_query')
+const { funcionmutation } = require('./archivos_gql/funcion_mutation')
 
 // Connect to MongoDB database
 const mongo_url = "mongodb+srv://CodeSquadDevAdmin:vQpkNv91hajyyVSd@cluster0free.losq0cb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0Free";
@@ -32,51 +34,13 @@ const typeDefs = gql`
 // Define resolvers for queries and mutations
 const resolvers = {
     Query: {
-        async getEntity(obj, { id }) {
-            const entity = await ExampleModel.findById(id);
-            return entity;
-        },
-        async getEntities(obj, { id }) {
-            const entity = await ExampleModel.find();
-            return entity;
-        },
-        async getUsuarios(obj, { id }) {
-            const entity = await UsuarioModel.find();
-            return entity;
-        },
-        async getUsuarioRol(obj, { input }) {
-            const { nrol } = input;
-            const entitys = await UsuarioModel.find();
-            const entity = entitys.filter((a) => a.nrol == nrol);
-            return entity;
-        },
-        async getUsuarioRut(obj, { input }) {
-            const { rut } = input;
-            const entitys = await UsuarioModel.find();
-            const entity = entitys.find((a) => a.rut == rut);
-            return entity;
-        },
-        async getRol(obj, { input }) {
-            const { nrol } = input;
-            const entitys = await RolModel.find();
-            const entity = entitys.find((a) => a.nrol == nrol);
-            return entity;
-        },
-        async getRoles(obj, { id }) {
-            const entity = await RolModel.find();
-            return entity;
-        }
-        // Add queries as needed
     },
     Mutation: {
-        async addEntity(obj, { input }) {
-            const entity = new ExampleModel(input); // Create new entity
-            await entity.save(); // Save the new entity
-            return entity;
-        }
-        // Add update and delete resolvers as needed
     }
 };
+
+Object.assign(resolvers.Query,funcionquery);
+Object.assign(resolvers.Mutation,funcionmutation);
 
 //resolvers['Query']['getRoles'] = async function(obj, { id }) {
     //const entity = await RolModel.find();
