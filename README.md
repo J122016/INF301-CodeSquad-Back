@@ -66,6 +66,17 @@ query GetUsuarioRol {
   }
 }
 
+query GetUsuarioRut {
+  getUsuarioRut(input: {rut:"12345678-9"}) {
+    id
+    usuario
+    nombre
+    rut
+    mail
+    nrol
+  }
+}
+
 query GetRoles {
   getRoles {
     id

@@ -11,68 +11,22 @@ const _ = require('lodash');
 const ExampleModel = require('./models/exampleModel');
 const UsuarioModel = require('./models/usuarioModel');
 const RolModel = require('./models/rolModel');
-const usuarioModel = require('./models/usuarioModel');
+const { tiposgql } = require('./archivos_gql/tipos')
+const { inputgql } = require('./archivos_gql/input')
+const { querygql } = require('./archivos_gql/query')
+const { mutationgql } = require('./archivos_gql/mutation')
 
 // Connect to MongoDB database
 const mongo_url = "mongodb+srv://CodeSquadDevAdmin:vQpkNv91hajyyVSd@cluster0free.losq0cb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0Free";
 mongoose.connect(mongo_url, { useNewUrlParser: true, useUnifiedTopology: false });
 
 // Define GraphQL schema
-const typeDefs_rol = gql`
-    type Rol {
-        id: ID!
-        rol: String!
-        nrol: String!
-    }
 
-    input RolFilter{
-        nrol: String!
-    }
-`;
-const typeDefs_usuario = gql`
-    type Usuario {
-        id: ID!
-        usuario: String!
-        nombre: String!
-        rut: String!
-        mail: String!
-        nrol: String!
-    }
-`;
-const typeDefs1 = gql`
-    type ModelOne {
-        id: ID!
-        nombre: String!
-    }
-
-    type Mensaje {
-        id: ID!
-        mensaje: String!
-    }
-
-    input ModelOneInput{
-        nombre: String!
-    }
-
-    type Query {
-        getEntities: [ModelOne]
-        getUsuarios: [Usuario]
-        getRoles: [Rol]
-        getEntity(id: String!): ModelOne
-        getUsuarioRol(input: RolFilter): [Usuario]
-        getRol(input: RolFilter): Rol
-    }
-
-    type Mutation {
-        addEntity(input: ModelOneInput): ModelOne
-        updateEntity(id: String!, input: ModelOneInput): ModelOne
-        deleteEntity(id: String!): Mensaje
-    }
-`;
 const typeDefs = gql`
-    ${typeDefs_rol}
-    ${typeDefs_usuario}
-    ${typeDefs1}
+    ${tiposgql}
+    ${inputgql}
+    ${querygql}
+    ${mutationgql}
 `;
 
 // Define resolvers for queries and mutations
@@ -96,16 +50,22 @@ const resolvers = {
             const entity = entitys.filter((a) => a.nrol == nrol);
             return entity;
         },
+        async getUsuarioRut(obj, { input }) {
+            const { rut } = input;
+            const entitys = await UsuarioModel.find();
+            const entity = entitys.find((a) => a.rut == rut);
+            return entity;
+        },
         async getRol(obj, { input }) {
             const { nrol } = input;
             const entitys = await RolModel.find();
             const entity = entitys.find((a) => a.nrol == nrol);
             return entity;
-        }//,
-        //async getRoles(obj, { id }) {
-        //    const entity = await RolModel.find();
-        //    return entity;
-        //}
+        },
+        async getRoles(obj, { id }) {
+            const entity = await RolModel.find();
+            return entity;
+        }
         // Add queries as needed
     },
     Mutation: {
@@ -118,10 +78,10 @@ const resolvers = {
     }
 };
 
-resolvers['Query']['getRoles'] = async function(obj, { id }) {
-    const entity = await RolModel.find();
-    return entity;
-}
+//resolvers['Query']['getRoles'] = async function(obj, { id }) {
+    //const entity = await RolModel.find();
+    //return entity;
+//}
 
 let apolloServer = null;
 
