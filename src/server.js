@@ -18,12 +18,18 @@ const mongo_url = "mongodb+srv://CodeSquadDevAdmin:vQpkNv91hajyyVSd@cluster0free
 mongoose.connect(mongo_url, { useNewUrlParser: true, useUnifiedTopology: false });
 
 // Define GraphQL schema
-const typeDefs = gql`
-    type ModelOne {
+const typeDefs_rol = gql`
+    type Rol {
         id: ID!
-        nombre: String!
+        rol: String!
+        nrol: String!
     }
 
+    input RolFilter{
+        nrol: String!
+    }
+`;
+const typeDefs_usuario = gql`
     type Usuario {
         id: ID!
         usuario: String!
@@ -32,20 +38,16 @@ const typeDefs = gql`
         mail: String!
         nrol: String!
     }
-
-    type Rol {
+`;
+const typeDefs1 = gql`
+    type ModelOne {
         id: ID!
-        rol: String!
-        nrol: String!
+        nombre: String!
     }
 
     type Mensaje {
         id: ID!
         mensaje: String!
-    }
-
-    input RolFilter{
-        nrol: String!
     }
 
     input ModelOneInput{
@@ -66,6 +68,11 @@ const typeDefs = gql`
         updateEntity(id: String!, input: ModelOneInput): ModelOne
         deleteEntity(id: String!): Mensaje
     }
+`;
+const typeDefs = gql`
+    ${typeDefs_rol}
+    ${typeDefs_usuario}
+    ${typeDefs1}
 `;
 
 // Define resolvers for queries and mutations
@@ -94,11 +101,11 @@ const resolvers = {
             const entitys = await RolModel.find();
             const entity = entitys.find((a) => a.nrol == nrol);
             return entity;
-        },
-        async getRoles(obj, { id }) {
-            const entity = await RolModel.find();
-            return entity;
-        }
+        }//,
+        //async getRoles(obj, { id }) {
+        //    const entity = await RolModel.find();
+        //    return entity;
+        //}
         // Add queries as needed
     },
     Mutation: {
@@ -110,6 +117,11 @@ const resolvers = {
         // Add update and delete resolvers as needed
     }
 };
+
+resolvers['Query']['getRoles'] = async function(obj, { id }) {
+    const entity = await RolModel.find();
+    return entity;
+}
 
 let apolloServer = null;
 
