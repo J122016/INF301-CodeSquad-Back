@@ -1,27 +1,14 @@
-const tiposgql = `
-    type ModelOne {
-        id: ID!
-        nombre: String!
-    }
+const { roltipo } = require('./rol/tipo')
+const { usuariotipo } = require('./usuario/tipo')
+const { modelonetipo } = require('./modelone/tipo')
 
+const tiposgql = `
+    ${modelonetipo}
+    ${roltipo}
+    ${usuariotipo}
     type Mensaje {
         id: ID!
         mensaje: String!
-    }
-
-    type Rol {
-        id: ID!
-        rol: String!
-        nrol: String!
-    }
-
-    type Usuario {
-        id: ID!
-        usuario: String!
-        nombre: String!
-        rut: String!
-        mail: String!
-        nrol: String!
     }
 `;
 

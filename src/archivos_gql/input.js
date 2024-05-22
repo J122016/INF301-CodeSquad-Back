@@ -1,15 +1,11 @@
+const { rolinput } = require('./rol/input')
+const { usuarioinput } = require('./usuario/input')
+const { modeloneinput } = require('./modelone/input')
+
 const inputgql = `
-    input RolFilter{
-        nrol: String!
-    }
-
-    input RutFilter{
-        rut: String!
-    }
-
-    input ModelOneInput{
-        nombre: String!
-    }
+    ${rolinput}
+    ${usuarioinput}
+    ${modeloneinput}
 `;
 
 module.exports = {
