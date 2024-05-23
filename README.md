@@ -71,6 +71,13 @@ mutation UpdateRol {
   }
 }
 
+mutation DeleteRol {
+  deleteRol(nrol: "4") {
+    id
+    mensaje
+  }
+}
+
 query GetUsuarioRol {
   getUsuarioRol(input: {nrol:"1"}) {
     id
