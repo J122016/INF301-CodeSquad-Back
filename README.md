@@ -55,6 +55,22 @@ query GetRol {
   }
 }
 
+mutation AddRol {
+  addRol(input: {rol:"Cajero",nrol:"4"}) {
+    id
+    rol
+    nrol
+  }
+}
+
+mutation UpdateRol {
+  updateRol(nrol: "4",rol:"Cajero") {
+    id
+    rol
+    nrol
+  }
+}
+
 query GetUsuarioRol {
   getUsuarioRol(input: {nrol:"1"}) {
     id
