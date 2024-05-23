@@ -13,6 +13,16 @@ const rolfuncmutation = {
         entity.rol = rol;
         await entity.save();
         return entity;
+    },
+    async deleteRol(obj,input) {
+        const { nrol } = input
+        const entitys = await RolModel.find();
+        const entity = entitys.find((a) => a.nrol == nrol);
+        const { id } = await entity.delete();
+        if (!id) {
+            throw new Error(`Rol de numero ${nrol} no encontrado`);
+        }
+        return {id: id, mensaje: 'Rol de numero ' + nrol + ' fue eliminado'};
     }
 }
 
