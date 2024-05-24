@@ -18,13 +18,18 @@ query GetEntities {
   }
 }
 
-query GetUsuarios {
-  getUsuarios {
+query Query($getEntityId: String!) {
+  getEntity(id: $getEntityId) {
     id
-    usuario
     nombre
-    rut
-    mail
+  }
+}
+
+query GetRoles {
+  getRoles {
+    id
+    rol
+    nrol
   }
 }
 
@@ -52,8 +57,15 @@ mutation UpdateRol {
   }
 }
 
-query GetUsuarioRol {
-  getUsuarioRol(input: {nrol:"1"}) {
+mutation DeleteRol {
+  deleteRol(nrol: "4") {
+    id
+    mensaje
+  }
+}
+
+query GetUsuarios {
+  getUsuarios {
     id
     usuario
     nombre
@@ -74,18 +86,43 @@ query GetUsuarioRut {
   }
 }
 
-query GetRoles {
-  getRoles {
+query GetUsuarioRol {
+  getUsuarioRol(input: {nrol:"1"}) {
     id
-    rol
+    usuario
+    nombre
+    rut
+    mail
     nrol
   }
 }
 
-query Query($getEntityId: String!) {
-  getEntity(id: $getEntityId) {
+mutation AddUsuario($insertUsuario: NuevoUsuario) {
+  addUsuario(input: $insertUsuario) {
     id
+    usuario
     nombre
+    rut
+    mail
+    nrol
+  }
+}
+
+mutation UpdateUsuario($ModUsuario: CambioUsuario) {
+  updateUsuario(rut: "98765432-1",input: $ModUsuario) {
+    id
+    usuario
+    nombre
+    rut
+    mail
+    nrol
+  }
+}
+
+mutation DeleteUsuario {
+  deleteUsuario(rut: "98765432-1") {
+    id
+    mensaje
   }
 }
 ```
@@ -93,11 +130,22 @@ query Query($getEntityId: String!) {
 **Variables**
 ```json
 {
-  "getEntityId": "66495e15deff23f5f886c189"
-}
-{
+  "getEntityId": "66495e15deff23f5f886c189",
   "setInput": {
     "nombre": "nombre ejemplo"
+  },
+  "insertUsuario": {
+    "usuario": "SegUsuario",
+    "nombre": "Segundo Usuario",
+    "rut": "98765432-1",
+    "mail": "s.u@1.com",
+    "nrol": "1"
+  },
+  "ModUsuario": {
+    "usuario": "SegUsuario2",
+    "nombre": "Segundo Usuario2",
+    "mail": "s.u@2.com",
+    "nrol": "1"
   }
 }
 ```
