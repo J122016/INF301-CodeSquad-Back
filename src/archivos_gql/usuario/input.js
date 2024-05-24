@@ -19,6 +19,12 @@ const usuarioinput = `
         mail: String!
         nrol: String!
     }
+
+    input login {
+        usuario: String!
+        pass: String!
+        mail: String!
+    }
 `;
 
 module.exports = {
