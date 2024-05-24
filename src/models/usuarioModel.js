@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 // Define the schema for the model
 const usuarioSchema = new mongoose.Schema({
     usuario: String,
+    pass: String,
     nombre: String,
     rut: String,
     mail: String,
