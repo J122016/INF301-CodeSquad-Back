@@ -8,9 +8,6 @@ const _ = require('lodash');
 //const { makeExecutableSchema } = require('graphql-tools');
 
 // Import models detallados
-const ExampleModel = require('./models/exampleModel');
-const UsuarioModel = require('./models/usuarioModel');
-const RolModel = require('./models/rolModel');
 const { tiposgql } = require('./archivos_gql/tipos')
 const { inputgql } = require('./archivos_gql/input')
 const { querygql } = require('./archivos_gql/query')
