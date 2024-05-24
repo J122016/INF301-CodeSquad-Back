@@ -68,6 +68,7 @@ query GetUsuarios {
   getUsuarios {
     id
     usuario
+    pass
     nombre
     rut
     mail
@@ -79,6 +80,7 @@ query GetUsuarioRut {
   getUsuarioRut(input: {rut:"12345678-9"}) {
     id
     usuario
+    pass
     nombre
     rut
     mail
@@ -90,6 +92,7 @@ query GetUsuarioRol {
   getUsuarioRol(input: {nrol:"1"}) {
     id
     usuario
+    pass
     nombre
     rut
     mail
@@ -101,6 +104,7 @@ mutation AddUsuario($insertUsuario: NuevoUsuario) {
   addUsuario(input: $insertUsuario) {
     id
     usuario
+    pass
     nombre
     rut
     mail
@@ -112,6 +116,7 @@ mutation UpdateUsuario($ModUsuario: CambioUsuario) {
   updateUsuario(rut: "98765432-1",input: $ModUsuario) {
     id
     usuario
+    pass
     nombre
     rut
     mail
@@ -136,6 +141,7 @@ mutation DeleteUsuario {
   },
   "insertUsuario": {
     "usuario": "SegUsuario",
+    "pass": "4321",
     "nombre": "Segundo Usuario",
     "rut": "98765432-1",
     "mail": "s.u@1.com",
@@ -143,6 +149,7 @@ mutation DeleteUsuario {
   },
   "ModUsuario": {
     "usuario": "SegUsuario2",
+    "pass": "4321",
     "nombre": "Segundo Usuario2",
     "mail": "s.u@2.com",
     "nrol": "1"

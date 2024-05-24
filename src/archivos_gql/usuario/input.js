@@ -5,6 +5,7 @@ const usuarioinput = `
 
     input NuevoUsuario {
         usuario: String!
+        pass: String!
         nombre: String!
         rut: String!
         mail: String!
@@ -13,6 +14,7 @@ const usuarioinput = `
 
     input CambioUsuario {
         usuario: String!
+        pass: String!
         nombre: String!
         mail: String!
         nrol: String!

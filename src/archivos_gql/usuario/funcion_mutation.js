@@ -8,10 +8,11 @@ const usuariofuncmutation = {
     },
     async updateUsuario(obj,args) {
         const { rut,input } = args
-        const { usuario,nombre,mail,nrol } = input
+        const { usuario,pass,nombre,mail,nrol } = input
         const entitys = await UsuarioModel.find();
         const entity = entitys.find((a) => a.rut == rut);
         entity.usuario = usuario;
+        entity.pass = pass;
         entity.nombre = nombre;
         entity.mail = mail;
         entity.nrol = nrol;
