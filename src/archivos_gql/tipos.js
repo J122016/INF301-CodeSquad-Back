@@ -10,6 +10,11 @@ const tiposgql = `
         id: ID!
         mensaje: String!
     }
+    type Mensaje2 {
+        id: ID!
+        nrol: String!
+        mensaje: String!
+    }
 `;
 
 module.exports = {

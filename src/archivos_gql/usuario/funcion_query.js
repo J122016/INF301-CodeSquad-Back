@@ -34,11 +34,11 @@ const usuariofuncquery = {
         }
         if(error_1 == 0)
         {
-            const { id } = entity;
-            return {id: id, mensaje: 'Login correcto'};
+            const { id,nrol } = entity;
+            return {id: id, nrol: nrol, mensaje: 'Login correcto'};
         }
 
-        return {id: '0', mensaje: 'Login incorecto, revice sus credenciales'};
+        return {id: '0', nrol: '0', mensaje: 'Login incorecto, revice sus credenciales'};
     }
 }
 

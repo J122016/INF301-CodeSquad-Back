@@ -134,6 +134,7 @@ mutation DeleteUsuario {
 query Login($datoslog1: login) {
   login(input: $datoslog1) {
     id
+    nrol
     mensaje
   }
 }
@@ -141,6 +142,7 @@ query Login($datoslog1: login) {
 query Login2($datoslog2: login) {
   login(input: $datoslog2) {
     id
+    nrol
     mensaje
   }
 }
@@ -148,6 +150,7 @@ query Login2($datoslog2: login) {
 query Login3($datoslog3: login) {
   login(input: $datoslog3) {
     id
+    nrol
     mensaje
   }
 }
