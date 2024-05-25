@@ -188,6 +188,30 @@ mutation DeleteUsuario {
   }
 }
 
+query Login($datoslog1: login) {
+  login(input: $datoslog1) {
+    id
+    nrol
+    mensaje
+  }
+}
+
+query Login2($datoslog2: login) {
+  login(input: $datoslog2) {
+    id
+    nrol
+    mensaje
+  }
+}
+
+query Login3($datoslog3: login) {
+  login(input: $datoslog3) {
+    id
+    nrol
+    mensaje
+  }
+}
+
 ```
 
 **Variables**
@@ -211,6 +235,21 @@ mutation DeleteUsuario {
     "nombre": "Segundo Usuario2",
     "mail": "s.u@2.com",
     "nrol": "1"
+  },
+  "datoslog1": {
+    "usuario": "SegUsuario2",
+    "pass": "4321",
+    "mail": ""
+  },
+  "datoslog2": {
+    "usuario": "",
+    "pass": "4321",
+    "mail": "s.u@2.com"
+  },
+  "datoslog3": {
+    "usuario": "",
+    "pass": "431",
+    "mail": "s.u@2.com"
   }
 }
 ```

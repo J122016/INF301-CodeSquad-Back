@@ -17,6 +17,29 @@ const usuariofuncquery = {
         const entity = entitys.find((a) => a.rut == rut);
         return entity;
     },
+    async login(obj, { input }) {
+        const { usuario,pass,mail } = input;
+        let llave = "mail";
+        let valor = mail;
+        let error_1 = 0;
+        if(usuario != "")
+        {
+            llave = "usuario";
+            valor = usuario;
+        }
+        const entitys = await UsuarioModel.find();
+        const entity = entitys.find(a => a[llave] == valor && a.pass == pass);
+        if (!entity) {
+            error_1 = 1;
+        }
+        if(error_1 == 0)
+        {
+            const { id,nrol } = entity;
+            return {id: id, nrol: nrol, mensaje: 'Login correcto'};
+        }
+
+        return {id: '0', nrol: '0', mensaje: 'Login incorecto, revice sus credenciales'};
+    }
 }
 
 module.exports = {
