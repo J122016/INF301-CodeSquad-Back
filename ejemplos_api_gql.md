@@ -156,3 +156,60 @@ mutation DeleteUsuario {
   }
 }
 ```
+
+## Operaciones ejemplo para API Factura
+
+```graphql
+mutation AddFactura($input: FacturaInput) {
+  addFactura(input: $input){
+    id
+  }
+}
+
+query GetFacturas {
+  getFacturas {
+    id,
+    comision
+    comprobante_pdf
+    id_medico
+    monto
+    nota_adicional
+    nota_adicional_comprobante
+    numero_atenciones
+    createdAt
+    updatedAt
+  }
+}
+
+query GetFactura($getFacturaId: String!) {
+  getFactura(id: $getFacturaId) {
+    monto
+  }
+}
+
+
+mutation UpdateFactura($updateFacturaId: String!, $updateFacturaInput2: ComprobanteInput) {
+  updateFactura(id: $updateFacturaId, input: $updateFacturaInput2) {
+    id
+  }
+}
+```
+
+## Variables para ejemplos API Factura
+```json
+{
+  "input": {
+    "comision": 14,
+    "id_medico": "identificadorMedicoDeEjemplo",
+    "monto": 12000,
+    "numero_atenciones": 2
+  },
+  "getFacturaId": "66512ae1f1396ccabf85e3c1",
+  "updateFacturaId": "66512ae1f1396ccabf85e3c1",
+  "updateFacturaInput2": {
+    "comprobante_pdf": "path/to/comprobante.pdf",
+    "factura_id": "66512ae1f1396ccabf85e3c1",
+    "nota_adicional_comprobante": "sin comentarios adicionales"
+  },
+}
+```
