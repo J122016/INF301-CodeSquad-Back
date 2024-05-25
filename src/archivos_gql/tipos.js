@@ -7,7 +7,7 @@ const tiposgql = `
     ${modelonetipo}
     ${roltipo}
     ${usuariotipo}
-    "Facturas para emisión y registro de comisiones"  ${facturaTipo}
+    ${facturaTipo}
     type Mensaje {
         id: ID!
         mensaje: String!
