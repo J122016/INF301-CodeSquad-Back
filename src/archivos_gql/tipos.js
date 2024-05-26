@@ -1,12 +1,14 @@
 const { roltipo } = require('./rol/tipo')
 const { usuariotipo } = require('./usuario/tipo')
 const { modelonetipo } = require('./modelone/tipo')
+const { agendatipo } = require('./agenda/tipo')
 const { facturaTipo } = require('./factura/tipo')
 
 const tiposgql = `
     ${modelonetipo}
     ${roltipo}
     ${usuariotipo}
+    ${agendatipo}
     ${facturaTipo}
     type Mensaje {
         id: ID!
