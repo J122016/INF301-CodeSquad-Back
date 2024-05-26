@@ -212,6 +212,56 @@ query Login3($datoslog3: login) {
   }
 }
 
+mutation addAgenda($agenda1: NuevaAgenda) {
+  addAgenda(input: $agenda1) {
+    id
+    categoria
+    id_medico
+    fecha
+    laboral
+  }
+}
+
+mutation addAgenda2($agenda2: NuevaAgenda) {
+  addAgenda(input: $agenda2) {
+    id
+    categoria
+    id_medico
+    fecha
+    laboral
+  }
+}
+
+mutation addAgendas($agenda3: NuevasAgendas) {
+  addAgendas(input: $agenda3) {
+    id
+    categoria
+    id_medico
+    fecha
+    laboral
+  }
+}
+
+query GetAgendas($get1: VerAgendas) {
+  getAgendas(input: $get1) {
+    id
+    categoria
+    id_medico
+    fecha
+    laboral
+  }
+}
+
+query GetAgendasDoc($get2: VerAgendasDoc) {
+  getAgendasDoc(input: $get2) {
+    id
+    categoria
+    id_medico
+    fecha
+    laboral
+  }
+}
+
 ```
 
 **Variables**
@@ -250,6 +300,35 @@ query Login3($datoslog3: login) {
     "usuario": "",
     "pass": "431",
     "mail": "s.u@2.com"
+  },
+  "agenda1": {
+    "categoria": "Global",
+    "id_medico": "",
+    "fecha": "2024-05-05",
+    "laboral": "No"
+  },
+  "agenda2": {
+    "categoria": "Medico",
+    "id_medico": "665353a188904508244f4bd9",
+    "fecha": "2024-05-03",
+    "laboral": "Si"
+  },
+  "agenda3": {
+    "ini": "2024-04-29",
+    "fin": "2024-05-04",
+    "categoria": "Global",
+    "id_medico": "",
+    "laboral": "Si"
+  },
+  "get1": {
+    "ini": "2024-04-29",
+    "fin": "2024-05-07",
+    "categoria": "Global"
+  },
+  "get2": {
+    "ini": "2024-05-01",
+    "fin": "2024-05-07",
+    "id_medico": "665353a188904508244f4bd9"
   }
 }
 ```
