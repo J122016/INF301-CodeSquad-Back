@@ -199,8 +199,8 @@ query Login3($datoslog3: login) {
 ## Operaciones ejemplo para API Factura
 
 ```graphql
-mutation AddFactura($input: FacturaInput) {
-  addFactura(input: $input){
+mutation AddFactura($facturaInput: FacturaInput) {
+  addFactura(facturaInput: $facturaInput) {
     id
   }
 }
@@ -208,28 +208,43 @@ mutation AddFactura($input: FacturaInput) {
 query GetFacturas {
   getFacturas {
     id,
-    comision
-    comprobante_pdf
-    id_medico
+    id_medico,
+    creada_por,
     monto
-    nota_adicional
-    nota_adicional_comprobante
-    numero_atenciones
-    createdAt
-    updatedAt
   }
 }
 
 query GetFactura($getFacturaId: String!) {
   getFactura(id: $getFacturaId) {
+    id
+    id_medico
+    numero_atenciones
+    comision
     monto
+    nota_adicional
+    comprobante_pdf
+    nota_adicional_comprobante
+    creada_por
+    actualizada_por
+    createdAt
+    updatedAt
   }
 }
 
+mutation UpdateFactura($comprobanteInput: ComprobanteInput) {
+  updateFactura(comprobanteInput: $comprobanteInput) {
+    actualizada_por
+    updatedAt
+    nota_adicional_comprobante
+    monto
+    comprobante_pdf
+  }
+}
 
-mutation UpdateFactura($updateFacturaId: String!, $updateFacturaInput2: ComprobanteInput) {
-  updateFactura(id: $updateFacturaId, input: $updateFacturaInput2) {
+mutation anularFactura($deleteFacturaId: String!) {
+  deleteFactura(factura_id: $deleteFacturaId) {
     id
+    mensaje
   }
 }
 ```
@@ -237,18 +252,20 @@ mutation UpdateFactura($updateFacturaId: String!, $updateFacturaInput2: Comproba
 ## Variables para ejemplos API Factura
 ```json
 {
-  "input": {
-    "comision": 14,
-    "id_medico": "identificadorMedicoDeEjemplo",
-    "monto": 12000,
+  "facturaInput": {
+    "comision": 50,
+    "creada_por": "ID secretaria",
+    "id_medico": "ID médico",
+    "monto": 50000,
     "numero_atenciones": 2
   },
-  "getFacturaId": "66512ae1f1396ccabf85e3c1",
-  "updateFacturaId": "66512ae1f1396ccabf85e3c1",
-  "updateFacturaInput2": {
-    "comprobante_pdf": "path/to/comprobante.pdf",
-    "factura_id": "66512ae1f1396ccabf85e3c1",
-    "nota_adicional_comprobante": "sin comentarios adicionales"
+  "getFacturaId": "6653f488b769b5dbeeed6b6d",
+  "comprobanteInput": {
+    "actualizada_por": "ID actualizador",
+    "comprobante_pdf": "url/path/to/comprobante.pdf",
+    "factura_id": "6653f488b769b5dbeeed6b6d",
+    "nota_adicional_comprobante": "Pago a 30 dias"
   },
+  "deleteFacturaId": "6653fdb393c85d7ea0e30b40"
 }
 ```

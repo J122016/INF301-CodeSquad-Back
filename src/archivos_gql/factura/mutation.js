@@ -2,10 +2,13 @@
 
 const facturaMutation = `
     "Crear una factura nueva"
-    addFactura(input: FacturaInput): Factura
+    addFactura(facturaInput: FacturaInput): Factura
 
-    "Anexar comprobante a factura con id conocido"
-    updateFactura(id: String!, input: ComprobanteInput): Factura
+    "Anular/eliminar factura si solo si no tiene comprobante"
+    anularFactura(factura_id: String!): Mensaje
+
+    "Anexar comprobante pago comisión a factura con id conocido, marca atenciones como facturadas"
+    updateFactura(comprobanteInput: ComprobanteInput): Factura
     `;
     //deleteEntity(id: String!): Mensaje
 

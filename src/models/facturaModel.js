@@ -36,6 +36,13 @@ const facturaSchema =  new mongoose.Schema({
   nota_adicional_comprobante: {
     type: String,
   },
+  creada_por: {
+    type: String,
+    required: true,
+  },
+  actualizada_por: {
+    type: String,
+  },
 }, { timestamps: true }); // Adds createdAt (fecha) and updatedAt(fecha_comprobante) mongo fields
 
 // export model Factura

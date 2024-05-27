@@ -7,13 +7,15 @@ const facturaInput = `
         "Cantidad de atenciones a incluir"  numero_atenciones: Int!
         "% de comisión asociado"            comision: Float!
         "precio final de factura"           monto: Float!
+        "id de usuario que creo factura"    creada_por: String!
     },
 
     "Estructura de entrada para modificar factura, es decir, añadir comprobante"
     input ComprobanteInput{
-        "id de factura"         factura_id: String!
-        "url de comprobante"    comprobante_pdf: String!
-        "nota opcional"         nota_adicional_comprobante: String!
+        "id de factura"                     factura_id: String!
+        "url de comprobante"                comprobante_pdf: String!
+        "nota opcional"                     nota_adicional_comprobante: String!
+        "id usuario que actualiza"          actualizada_por: String!
     }
 `;
 
