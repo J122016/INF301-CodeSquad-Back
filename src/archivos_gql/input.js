@@ -3,6 +3,7 @@ const { rolinput } = require('./rol/input')
 const { usuarioinput } = require('./usuario/input')
 const { facturaInput } = require('./factura/input')
 const { agendainput } = require('./agenda/input')
+const { reservainput } = require('./reserva/input')
 
 const inputgql = `
     ${modeloneinput}
@@ -10,6 +11,7 @@ const inputgql = `
     ${usuarioinput}
     ${facturaInput}
     ${agendainput}
+    ${reservainput}
 `;
 
 module.exports = {
