@@ -205,9 +205,67 @@ query GetAgendasDoc($get2: VerAgendasDoc) {
   }
 }
 
+query GetReservasCliente($rutcte: RutInput) {
+  getReservasCliente(input: $rutcte) {
+    id
+    rut
+    fecha
+    hora
+    id_medico
+    atendido
+    facturado
+    pagado
+  }
+}
+
+query GetReservasMedico($buscareservadoc: FechaIDInput) {
+  getReservasMedico(input: $buscareservadoc) {
+    id
+    rut
+    fecha
+    hora
+    id_medico
+    atendido
+    facturado
+    pagado
+  }
+}
+
+query getAtendidosMedico($buscareservadoc: FechaIDInput) {
+  getAtendidosMedico(input: $buscareservadoc) {
+    id
+    rut
+    fecha
+    hora
+    id_medico
+    atendido
+    facturado
+    pagado
+  }
+}
+
 mutation CrearReserva($reserva: ReservaInput) {
   crearReserva(input: $reserva) {
     id
+    mensaje
+  }
+}
+
+mutation ModificarReserva($buscareserva: RutFechaInput!,$modreserva1: modreservapaciente) {
+  modificarReserva(input: $buscareserva,update: $modreserva1) {
+    id
+    mensaje
+  }
+}
+
+mutation cancelarReserva($buscareserva: RutFechaInput!) {
+  cancelarReserva(input: $buscareserva) {
+    mensaje
+  }
+}
+
+mutation Marcaratendido($buscareserva: RutFechaInput!) {
+  marcaratendido(input: $buscareserva) {
     mensaje
   }
 }
@@ -283,6 +341,22 @@ mutation CrearReserva($reserva: ReservaInput) {
     "rut": "22222222-2",
     "fecha": "2024-05-05",
     "hora": "12:30",
+    "id_medico": "665353a188904508244f4bd9"
+  },
+  "rutcte": {
+    "rut": "22222222-2"
+  },
+  "buscareserva": {
+    "rut": "22222222-2",
+    "fecha": "2024-05-05"
+  },
+  "buscareservadoc": {
+    "fecha": "2024-05-05",
+    "id_medico": "665353a188904508244f4bd9"
+  },
+  "modreserva1": {
+    "fecha": "2024-05-05",
+    "hora": "14:30",
     "id_medico": "665353a188904508244f4bd9"
   }
 }

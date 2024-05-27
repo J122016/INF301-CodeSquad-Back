@@ -1,7 +1,8 @@
 const reservamutation = `
     crearReserva(input: ReservaInput): Mensaje
-    modificarReserva (search: String!, update: String): String
-    cancelarReserva  (search: String!): String
+    modificarReserva( input: RutFechaInput!, update: modreservapaciente): Mensaje
+    cancelarReserva( input: RutFechaInput ): Mensaje3
+    marcaratendido( input: RutFechaInput ): Mensaje3
 `;
 
 module.exports = {

@@ -11,8 +11,19 @@ const reservainput = `
     }
 
     input RutFechaInput {
-        rut:   String!
+        rut: String!
         fecha: String!
+    }
+
+    input FechaIDInput {
+        fecha: String!
+        id_medico: String!
+    }
+
+    input modreservapaciente {
+        fecha: String!
+        hora: String!
+        id_medico: String!
     }
 `;
 

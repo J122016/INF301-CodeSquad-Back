@@ -19,6 +19,9 @@ const tiposgql = `
         nrol: String!
         mensaje: String!
     }
+    type Mensaje3 {
+        mensaje: String!
+    }
 `;
 
 module.exports = {

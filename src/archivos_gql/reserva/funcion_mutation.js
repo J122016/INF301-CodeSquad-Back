@@ -2,7 +2,8 @@ const ReservaModel = require('../../models/reservaModel');
 
 const reservafuncmutation = {
     async crearReserva(obj, { input }) {
-        // Crea atencion
+        const blanco = { atendido: 0, facturado: 0, pagado: 0 };
+        Object.assign(input, blanco);
         const entity = new ReservaModel(input);
 
         // Reserva Hora
@@ -12,13 +13,13 @@ const reservafuncmutation = {
         return {id: entity.id,mensaje:"Reserva Creada"}
     },
 
-    async modificarReserva (obj, { search, update } ) {
+    async modificarReserva (obj, { input, update } ) {
         // { rut, fecha } = search
         // ReservaModel ( update )
 
         try {
             const updatedReserva = await ReservaModel.findOneAndUpdate(
-                search,       // Rut y Fecha
+                input,       // Rut y Fecha
                 update,
                 { new: true } // opt: Devuelve el documento actualizado
             );
@@ -26,24 +27,28 @@ const reservafuncmutation = {
             if (!updatedReserva) {
                 throw new Error('Reserva no encontrada');
             }
-            return "Reserva Modificada";
+            return {id: updatedReserva.id,mensaje:"Reserva Modificada"};
         } catch (error) {
             console.error('Error al actualizar la reserva:', error);
-            return "Reserva No Modificada";
+            return {id: "0",mensaje:"Reserva No Modificada"};
         }
     },
 
-    async cancelarReserva  (obj, { search } ) {
-        try {
-            const pop = await reservaModel.findOneAndDelete( search );
-            if (!pop) {
-                throw new Error('Reserva no encontrada');
-            }
-            return "Reserva Anulada"
-        } catch {
-            console.error('Error al anular la reserva:', error);
-            return "Reserva No anulada";
+    async cancelarReserva(obj, { input } ) {
+        const pop = await ReservaModel.findOneAndDelete( input );
+        if (!pop) {
+            return {mensaje:"Reserva No anulada"};
         }
+        return {mensaje:"Reserva Anulada"};
+    },
+
+    async marcaratendido(obj, { input } ) {
+        const pop = await ReservaModel.findOneAndUpdate( input , { atendido: 1 }
+        );
+        if (!pop) {
+            return {mensaje:"Error efectando el cambio"};
+        }
+        return {mensaje:"Estado actualizado"};
     }
 }
 
