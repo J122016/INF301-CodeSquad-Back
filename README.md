@@ -262,6 +262,13 @@ query GetAgendasDoc($get2: VerAgendasDoc) {
   }
 }
 
+mutation CrearReserva($reserva: ReservaInput) {
+  crearReserva(input: $reserva) {
+    id
+    mensaje
+  }
+}
+
 ```
 
 **Variables**
@@ -328,6 +335,12 @@ query GetAgendasDoc($get2: VerAgendasDoc) {
   "get2": {
     "ini": "2024-05-01",
     "fin": "2024-05-07",
+    "id_medico": "665353a188904508244f4bd9"
+  },
+  "reserva": {
+    "rut": "22222222-2",
+    "fecha": "2024-05-05",
+    "hora": "12:30",
     "id_medico": "665353a188904508244f4bd9"
   }
 }
