@@ -10,5 +10,8 @@ const reservaschema = new mongoose.Schema({
     pagado: Boolean,
 });
 
+//bloqueo de horas duplicadas para un médico
+reservaschema.index({ fecha: 1, hora: 1, id_medico:1}, { unique: true });
+
 // Create the model using the defined schema
 module.exports = mongoose.model('Reserva', reservaschema);

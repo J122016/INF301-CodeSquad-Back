@@ -20,6 +20,10 @@ const reservainput = `
         id_medico: String!
     }
 
+    input FechaInput {
+        fecha: String!
+    }
+
     input modreservapaciente {
         fecha: String!
         hora: String!

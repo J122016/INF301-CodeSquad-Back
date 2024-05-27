@@ -7,7 +7,11 @@ const reservafuncmutation = {
         const entity = new ReservaModel(input);
 
         // Reserva Hora
-        await entity.save();
+        try {
+            await entity.save();   
+        } catch (error) {
+            throw new Error('Reserva no guardada',error);
+        }
 
         // Manejo de reslutado
         return {id: entity.id,mensaje:"Reserva Creada"}
@@ -34,21 +38,42 @@ const reservafuncmutation = {
         }
     },
 
-    async cancelarReserva(obj, { input } ) {
-        const pop = await ReservaModel.findOneAndDelete( input );
+    // Cancela reserva especifica dado paciente, medico, día y hora
+    async cancelarReserva(obj, { input, reserva } ) {
+        const search = {...input, ...reserva}
+        console.log("rut, fecha, hora, id_medico", search)
+        const pop = await ReservaModel.findOneAndDelete( search );
         if (!pop) {
             return {mensaje:"Reserva No anulada"};
         }
         return {mensaje:"Reserva Anulada"};
     },
 
-    async marcaratendido(obj, { input } ) {
-        const pop = await ReservaModel.findOneAndUpdate( input , { atendido: 1 }
+    //flujo reservas es: 1. pagar -> 2. atender -> 3.facturar(manejado por factura)
+    async marcarPagado(obj, { input, reserva  } ) {
+        const search = {...input, ...reserva}
+        const pop = await ReservaModel.findOneAndUpdate( search , { pagado: 1 }
         );
         if (!pop) {
             return {mensaje:"Error efectando el cambio"};
         }
         return {mensaje:"Estado actualizado"};
+    },
+
+    //Para acceder a atencion requiere pagar previamente
+    async marcaratendido(obj, { input, reserva  } ) {
+        const search = {...input, ...reserva}
+        const target = await ReservaModel.findOne(search)
+        if (target.pagado == 0) {
+            return {mensaje:"Error efectando el cambio. Requiere pago previo."};
+        }
+        target.atendido = 1;
+        try {
+            target.save();
+            return {mensaje:"Estado actualizado"};
+        } catch (err) {
+            return {mensaje:"Error efectando el cambio"};
+        }
     }
 }
 

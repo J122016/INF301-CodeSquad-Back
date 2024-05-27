@@ -218,6 +218,16 @@ query GetReservasCliente($rutcte: RutInput) {
   }
 }
 
+query GetReservasEnEsperaDia($dia: FechaInput) {
+  getReservasEnEsperaDia(input: $dia) {
+    rut
+    fecha
+    hora
+    pagado
+    atendido
+  }
+}
+
 query GetReservasMedico($buscareservadoc: FechaIDInput) {
   getReservasMedico(input: $buscareservadoc) {
     id
@@ -266,6 +276,12 @@ mutation cancelarReserva($buscareserva: RutFechaInput!) {
 
 mutation Marcaratendido($buscareserva: RutFechaInput!) {
   marcaratendido(input: $buscareserva) {
+    mensaje
+  }
+}
+
+mutation MarcarPagado($buscareserva: RutFechaInput) {
+  marcarPagado(input: $buscareserva) {
     mensaje
   }
 }
@@ -358,6 +374,9 @@ mutation Marcaratendido($buscareserva: RutFechaInput!) {
     "fecha": "2024-05-05",
     "hora": "14:30",
     "id_medico": "665353a188904508244f4bd9"
+  },
+  "dia": {
+    "fecha": "2024-05-27"
   }
 }
 ```

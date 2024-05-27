@@ -15,10 +15,18 @@ const reservasfuncquery = {
         return reservas;
     },
 
-    // Obtiene Todas las Reservas de un MEDICO segun fecha e id del medico
+    // Obtiene Todas las Reservas en espera(pagadas) de un día
+    async getReservasEnEsperaDia(obj, { input }) {
+        const fecha = input.fecha;
+        const pagado = 1;
+        const reservas = await ReservaModel.find({ fecha, pagado });
+        return reservas;
+    },
+
+    // Obtiene Todas las Reservas PENDIENTES de un MEDICO segun fecha e id del medico
     async getAtendidosMedico(obj, { input }) {
         const { fecha, id_medico } = input;
-        const atendido = 0;
+        const atendido = 1;
         const reservas = await ReservaModel.find({ fecha,id_medico,atendido });
         return reservas;
     }
