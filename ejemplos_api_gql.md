@@ -218,16 +218,6 @@ query GetReservasCliente($rutcte: RutInput) {
   }
 }
 
-query GetReservasEnEsperaDia($dia: FechaInput) {
-  getReservasEnEsperaDia(input: $dia) {
-    rut
-    fecha
-    hora
-    pagado
-    atendido
-  }
-}
-
 query GetReservasMedico($buscareservadoc: FechaIDInput) {
   getReservasMedico(input: $buscareservadoc) {
     id
@@ -280,11 +270,50 @@ mutation Marcaratendido($buscareserva: RutFechaInput!) {
   }
 }
 
-mutation MarcarPagado($buscareserva: RutFechaInput) {
-  marcarPagado(input: $buscareserva) {
+mutation addBoleta($input: BoletaInput!) {
+  addBoleta(input: $input) {
+    id
+    id_atencion
+    monto
+    fecha
+  }
+}
+
+query getBoletas {
+  getBoletas {
+    id
+    id_atencion
+    monto
+    fecha
+  }
+}
+
+query getBoleta($id: String!) {
+  getBoleta(id: $id) {
+    id
+    id_atencion
+    monto
+    fecha
+  }
+}
+
+
+mutation updateBoleta($id: String!, $input: BoletaInput!) {
+  updateBoleta(id: $id, input: $input) {
+    id
+    id_atencion
+    monto
+    fecha
+  }
+}
+
+mutation deleteBoleta($id: String!) {
+  deleteBoleta(id: $id) {
+    id
     mensaje
   }
 }
+
 ```
 
 **Variables**
@@ -375,8 +404,24 @@ mutation MarcarPagado($buscareserva: RutFechaInput) {
     "hora": "14:30",
     "id_medico": "665353a188904508244f4bd9"
   },
-  "dia": {
-    "fecha": "2024-05-27"
+  "boletaInput": {
+    "id_atencion": "12345",
+    "monto": 100.50,
+    "fecha": "2023-05-27"
+  },
+
+  {
+  "boletaId": "ID_DE_LA_BOLETA",
+  "boletaInput": {
+    "id_atencion": "67890",
+    "monto": 200.75,
+    "fecha": "2023-06-01"
+  } 
+  },
+  
+  {
+  "boletaId": "ID_DE_LA_BOLETA"
   }
+
 }
 ```
