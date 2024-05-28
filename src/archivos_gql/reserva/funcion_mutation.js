@@ -49,15 +49,16 @@ const reservafuncmutation = {
         return {mensaje:"Reserva Anulada"};
     },
 
-    //flujo reservas es: 1. pagar -> 2. atender -> 3.facturar(manejado por factura)
+    /**
+     * function marcarPagado deprecada
+     * ---
+     * flujo reservas es: 
+     * 1. pagar (manejado por boletas > addBoleta, antes reserva > marcarPagado)
+     * 2. atender (manejado por reserva > marcaratendido)
+     * 3. facturar(manejado por factura > updateFactura)
+     */
     async marcarPagado(obj, { input, reserva  } ) {
-        const search = {...input, ...reserva}
-        const pop = await ReservaModel.findOneAndUpdate( search , { pagado: 1 }
-        );
-        if (!pop) {
-            return {mensaje:"Error efectando el cambio"};
-        }
-        return {mensaje:"Estado actualizado"};
+        return {mensaje:"Deprecada, usar 'addBoleta'."};
     },
 
     //Para acceder a atencion requiere pagar previamente

@@ -1,4 +1,5 @@
 const FacturaModel = require('../../models/facturaModel'); //import main model
+const ReservaModel = require('../../models/reservaModel'); //used by updateFactura
 
 // rutinas de mutaciones
 const facturaFuncMutation = {
@@ -34,8 +35,6 @@ const facturaFuncMutation = {
         factura_modificada.comprobante_pdf = comprobanteInput.comprobante_pdf;
         factura_modificada.nota_adicional_comprobante = comprobanteInput.nota_adicional_comprobante;
         factura_modificada.actualizada_por = comprobanteInput.actualizada_por;
-
-        const ReservaModel = require('../../models/reservaModel');
 
         // Actualiza las reservas que cumplen con los criterios:
         // pagado, atendido del médico, con fecha previa a factura

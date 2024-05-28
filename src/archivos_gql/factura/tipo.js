@@ -7,7 +7,7 @@ const facturaTipo = `
         "mongo id de médico"                            id_medico: String!
         "numero de atenciones a facturar"               numero_atenciones: Int!
         "% de comisión a pagar para el centro"          comision: Float!
-        "monto a facturar"                              monto: Int!
+        "monto a facturar"                              monto: Float!
         "comentarios adicionales (opcional)"            nota_adicional: String
         "url de comprobante de pago"                    comprobante_pdf: String
         "comentarios de comprobante (opcional)"         nota_adicional_comprobante: String
@@ -19,7 +19,7 @@ const facturaTipo = `
 
     "Modelo auxiliar de resumen atenciones"
     type ResumenAtencionesACobrar{
-        "monto a facturar"                              monto: Int!
+        "monto a facturar"                              monto: Float!
         "numero de atenciones a facturar"               numero_atenciones: Int!
     }
 
@@ -29,7 +29,7 @@ const facturaTipo = `
         id_medico: String!
         numero_atenciones: Int!
         comision: Float!
-        monto: Int!
+        monto: Float!
         nota_adicional: String
         comprobante_pdf: String
         nota_adicional_comprobante: String

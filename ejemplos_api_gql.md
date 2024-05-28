@@ -535,6 +535,6 @@ mutation anularFactura($deleteFacturaId: String!) {
   //reservas a facturar inputs
   "medicoId": "665353a188904508244f4bd9",
   "fechaInicio": "2024-05-01",
-  "fechaFinal": "2024-07-12"
+  "fechaFinal": "2024-07-12" //2024-05-31
 }
 ```

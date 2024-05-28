@@ -1,6 +1,6 @@
 const FacturaModel = require('../../models/facturaModel'); //import main model
 const ReservaModel = require('../../models/reservaModel'); //used in getAtencionesACobrar
-//const BoletasModel = require('../../models/boletaModel'); //soon used in getAtencionesACobrar
+const BoletasModel = require('../../models/boletaModel'); //soon used in getAtencionesACobrar
 
 // rutinas de consultas
 const facturaFuncQuery = {
@@ -14,12 +14,13 @@ const facturaFuncQuery = {
     },
     
     
-    //--- TO DO WAITING FOR RESERVAS ---
-    async getReservasAFacturar(obj, { medico_id, fecha_inicio, fecha_final }){        
+    // Consulta reservas pagadas sin facturas entre las fechas junto al monto de sus boletas
+    async getReservasAFacturar(obj, { id_medico, fecha_inicio, fecha_final }){        
         //reservas pagadas de médico que entre las fechas consultadas
         const reservas = await ReservaModel.find({
-            medico_id,
+            id_medico,
             pagado: true,
+            facturado: false,
             fecha: { $gt: new Date(fecha_inicio), $lt: new Date(fecha_final) }
         });
 
@@ -27,13 +28,13 @@ const facturaFuncQuery = {
         const reservasIds = reservas.map(reserva => reserva._id);
 
         // TO DO (first update from main):  consultando por boletas asociadas
-        /*const boletas = await BoletaModel.find({
+        const boletas = await BoletasModel.find({
             id_atencion: { $in: reservasIds }
-        });*/
+        });
 
         // preparando resultado monto total y número de atenciones
         const summary = {
-            monto: 0, //boletas.reduce((acc, boleta) => acc + boleta.monto, 0),
+            monto: boletas.reduce((acc, boleta) => acc + boleta.monto, 0),
             numero_atenciones: reservas.length
         };
         return summary
