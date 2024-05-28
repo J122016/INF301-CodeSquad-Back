@@ -4,6 +4,7 @@ const { usuarioinput } = require('./usuario/input')
 const { facturaInput } = require('./factura/input')
 const { agendainput } = require('./agenda/input')
 const { reservainput } = require('./reserva/input')
+const { boletaInput } = require('./boleta/input')
 
 const inputgql = `
     ${modeloneinput}
@@ -12,6 +13,7 @@ const inputgql = `
     ${facturaInput}
     ${agendainput}
     ${reservainput}
+    ${boletaInput}
 `;
 
 module.exports = {
