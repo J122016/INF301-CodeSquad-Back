@@ -39,6 +39,12 @@ const facturaTipo = `
         updatedAt: String!
         "Cantidad de reservas actualizadas a facturadas" reservasActualizadas: Int!
     }
+
+    "Estadísticas para reporte"
+    type ReporteAtencionesEfectuadasPorDia {
+        id_medico: String!
+        comision: [Float!]
+    }
 `;
 
 module.exports = {

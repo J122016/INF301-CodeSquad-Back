@@ -512,6 +512,13 @@ mutation anularFactura($deleteFacturaId: String!) {
     mensaje
   }
 }
+
+query GetReporteComisionesMedicosPorDia ($fechaInicio: String!, $fechaFinal: String!){
+  getReporteComisionesMedicosPorDia(fecha_inicio: $fechaInicio, fecha_final: $fechaFinal) {
+    id_medico
+    comision
+  }
+}
 ```
 
 ## Variables para ejemplos API Factura
