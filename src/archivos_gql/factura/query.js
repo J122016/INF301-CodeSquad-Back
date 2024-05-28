@@ -8,7 +8,7 @@ const facturaQuery = `
     getFactura(id: String!): Factura
 
     "TO DO WAITING FOR ATENCIONES - Calcula atenciones a cobrar y monto asociado"
-    getAtencionesACobrar(medico_id:String!, fecha_inicio:String!, fecha_final:String!): ResumenAtencionesACobrar
+    getReservasAFacturar(medico_id:String!, fecha_inicio:String!, fecha_final:String!): ResumenAtencionesACobrar
 `;
 
 module.exports = {

@@ -429,6 +429,13 @@ query GetFactura($getFacturaId: String!) {
   }
 }
 
+query GetReservasAFacturar($medicoId: String!, $fechaInicio: String!, $fechaFinal: String!) {
+  getReservasAFacturar(medico_id: $medicoId, fecha_inicio: $fechaInicio, fecha_final: $fechaFinal) {
+    monto
+    numero_atenciones
+  }
+}
+
 mutation UpdateFactura($comprobanteInput: ComprobanteInput) {
   updateFactura(comprobanteInput: $comprobanteInput) {
     actualizada_por
@@ -466,6 +473,10 @@ mutation anularFactura($deleteFacturaId: String!) {
     "factura_id": "6653f488b769b5dbeeed6b6d",
     "nota_adicional_comprobante": "Pago a 30 dias"
   },
-  "deleteFacturaId": "6653fdb393c85d7ea0e30b40"
+  "deleteFacturaId": "6653fdb393c85d7ea0e30b40",
+  //reservas a facturar inputs
+  "medicoId": "665353a188904508244f4bd9",
+  "fechaInicio": "2024-05-01",
+  "fechaFinal": "2024-07-12"
 }
 ```

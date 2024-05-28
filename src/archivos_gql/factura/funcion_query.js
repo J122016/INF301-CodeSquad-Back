@@ -1,4 +1,6 @@
 const FacturaModel = require('../../models/facturaModel'); //import main model
+const ReservaModel = require('../../models/reservaModel'); //used in getAtencionesACobrar
+//const BoletasModel = require('../../models/boletaModel'); //soon used in getAtencionesACobrar
 
 // rutinas de consultas
 const facturaFuncQuery = {
@@ -11,31 +13,31 @@ const facturaFuncQuery = {
         return entity;
     },
     
-    /*
-    --- TO DO WAITING FOR ATENCIONES ---
-    async getAtencionesACobrar(obj, { medico_id, fecha_inicio, fecha_final }){
-        //pseudocode
-        const atenciones = await atenciones where ... medico_id=medico_id createdAt>fecha_inicio, updatedAt<fecha_final
-        summary.atenciones = count of atenciones
-        summary.monto = sum of each atenciones.monto
-        return summary
-
-        ---
-        //code idea, test later
-        const atenciones = await Atencion.find({
+    
+    //--- TO DO WAITING FOR RESERVAS ---
+    async getReservasAFacturar(obj, { medico_id, fecha_inicio, fecha_final }){        
+        //reservas pagadas de médico que entre las fechas consultadas
+        const reservas = await ReservaModel.find({
             medico_id,
-            createdAt: { $gt: new Date(fecha_inicio) },
-            updatedAt: { $lt: new Date(fecha_final) }
+            pagado: true,
+            fecha: { $gt: new Date(fecha_inicio), $lt: new Date(fecha_final) }
         });
 
+        // sacando id de reservas a facturar
+        const reservasIds = reservas.map(reserva => reserva._id);
+
+        // TO DO (first update from main):  consultando por boletas asociadas
+        /*const boletas = await BoletaModel.find({
+            id_atencion: { $in: reservasIds }
+        });*/
+
+        // preparando resultado monto total y número de atenciones
         const summary = {
-            monto: atenciones.reduce((acc, atencion) => acc + atencion.monto, 0),
-            numero_atenciones: atenciones.length
+            monto: 0, //boletas.reduce((acc, boleta) => acc + boleta.monto, 0),
+            numero_atenciones: reservas.length
         };
         return summary
-        ---
-
-    */
+    }
 }
 
 module.exports = {
