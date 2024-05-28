@@ -274,14 +274,58 @@ mutation cancelarReserva($buscareserva: RutFechaInput!) {
   }
 }
 
+mutation MarcarPagado($buscareserva: RutFechaInput) {
+  marcarPagado(input: $buscareserva) {
+    mensaje
+  }
+}
+
 mutation Marcaratendido($buscareserva: RutFechaInput!) {
   marcaratendido(input: $buscareserva) {
     mensaje
   }
 }
 
-mutation MarcarPagado($buscareserva: RutFechaInput) {
-  marcarPagado(input: $buscareserva) {
+mutation addBoleta($input: BoletaInput!) {
+  addBoleta(input: $input) {
+    id
+    id_atencion
+    monto
+    fecha
+  }
+}
+
+query getBoletas {
+  getBoletas {
+    id
+    id_atencion
+    monto
+    fecha
+  }
+}
+
+query getBoleta($id: String!) {
+  getBoleta(id: $id) {
+    id
+    id_atencion
+    monto
+    fecha
+  }
+}
+
+
+mutation updateBoleta($id: String!, $input: BoletaInput!) {
+  updateBoleta(id: $id, input: $input) {
+    id
+    id_atencion
+    monto
+    fecha
+  }
+}
+
+mutation deleteBoleta($id: String!) {
+  deleteBoleta(id: $id) {
+    id
     mensaje
   }
 }
@@ -390,6 +434,22 @@ query GetReporteAtencionesEfectuadasPorDia($inicio: FechaInput, $fin: FechaInput
   },
   "fin": {
     "fecha": "2024-07-12"
+  },
+  "boletaInput": {
+    "id_atencion": "12345",
+    "monto": 100.50,
+    "fecha": "2023-05-27"
+  },
+  {
+  "boletaId": "ID_DE_LA_BOLETA",
+  "boletaInput": {
+      "id_atencion": "67890",
+      "monto": 200.75,
+      "fecha": "2023-06-01"
+    } 
+  },
+  {
+  "boletaId": "ID_DE_LA_BOLETA"
   }
 }
 ```
