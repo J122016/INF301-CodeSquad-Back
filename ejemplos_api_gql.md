@@ -270,8 +270,9 @@ mutation Marcaratendido($buscareserva: RutFechaInput!) {
   }
 }
 
-mutation addBoleta($input: BoletaInput!) {
-  addBoleta(input: $input) {
+
+mutation addBoleta($boletaInput: BoletaInput!) {
+  addBoleta(input: $boletaInput) {
     id
     id_atencion
     monto
@@ -288,8 +289,8 @@ query getBoletas {
   }
 }
 
-query getBoleta($id: String!) {
-  getBoleta(id: $id) {
+query getBoleta($getBoletaId: ID!) {
+  getBoleta(id: $getBoletaId) {
     id
     id_atencion
     monto
@@ -298,8 +299,8 @@ query getBoleta($id: String!) {
 }
 
 
-mutation updateBoleta($id: String!, $input: BoletaInput!) {
-  updateBoleta(id: $id, input: $input) {
+mutation updateBoleta($inputUpdateBoleta: BoletaInput, $updateBoletaId: ID!) {
+  updateBoleta(input: $inputUpdateBoleta, id: $updateBoletaId) {
     id
     id_atencion
     monto
@@ -307,13 +308,12 @@ mutation updateBoleta($id: String!, $input: BoletaInput!) {
   }
 }
 
-mutation deleteBoleta($id: String!) {
-  deleteBoleta(id: $id) {
+mutation deleteBoleta($deleteBoletaId: ID!) {
+  deleteBoleta(id: $deleteBoletaId) {
     id
     mensaje
   }
 }
-
 ```
 
 **Variables**
@@ -405,23 +405,17 @@ mutation deleteBoleta($id: String!) {
     "id_medico": "665353a188904508244f4bd9"
   },
   "boletaInput": {
-    "id_atencion": "12345",
-    "monto": 100.50,
-    "fecha": "2023-05-27"
+    "fecha": "2024-05-27",
+    "id_atencion": "66550fafae262793438ce8ca",
+    "monto": 100.50
   },
-
-  {
-  "boletaId": "ID_DE_LA_BOLETA",
-  "boletaInput": {
-    "id_atencion": "67890",
-    "monto": 200.75,
-    "fecha": "2023-06-01"
-  } 
+  "getBoletaId": "6655507a33a32141a0a5cf76",
+  "inputUpdateBoleta": {
+    "fecha": "2024-05-28",
+    "id_atencion": "66550fafae262793438ce8ca",
+    "monto": 200.75
   },
-  
-  {
-  "boletaId": "ID_DE_LA_BOLETA"
-  }
-
+  "updateBoletaId": "6655507a33a32141a0a5cf76",
+  "deleteBoletaId": "665551f233a32141a0a5cf7c"
 }
 ```
