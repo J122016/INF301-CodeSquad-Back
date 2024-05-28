@@ -3,6 +3,7 @@ const reservaquery = `
     getReservasMedico  ( input: FechaIDInput ) : [ Reserva ]
     getReservasEnEsperaDia (input: FechaInput): [ Reserva ]
     getAtendidosMedico  ( input: FechaIDInput ) : [ Reserva ]
+    getReporteAtencionesEfectuadasPorDia (inicio: FechaInput, fin:FechaInput ): [ DiaAtenciones ]
 `;
 
 module.exports = {

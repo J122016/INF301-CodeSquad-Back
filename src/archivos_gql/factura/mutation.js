@@ -8,7 +8,7 @@ const facturaMutation = `
     anularFactura(factura_id: String!): Mensaje
 
     "Anexar comprobante pago comisión a factura con id conocido, marca atenciones como facturadas"
-    updateFactura(comprobanteInput: ComprobanteInput): Factura
+    updateFactura(comprobanteInput: ComprobanteInput): FacturaReservasMod
     `;
     //deleteEntity(id: String!): Mensaje
 

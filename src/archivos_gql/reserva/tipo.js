@@ -9,6 +9,12 @@ const reservatipo = `
 		facturado: Boolean!
 		pagado: Boolean!
     }
+
+	"Estadísticas para reporte"
+	type DiaAtenciones{
+		dia: String!
+		atenciones: Int!
+	}
 `;
 
 module.exports = {

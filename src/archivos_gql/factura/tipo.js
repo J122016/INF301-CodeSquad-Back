@@ -22,6 +22,23 @@ const facturaTipo = `
         "monto a facturar"                              monto: Int!
         "numero de atenciones a facturar"               numero_atenciones: Int!
     }
+
+    "Modelo auxiliar, simil a factura, pero, incluye la cantidad de reservas que se actualizaron"
+    type FacturaReservasMod{
+        id: ID!
+        id_medico: String!
+        numero_atenciones: Int!
+        comision: Float!
+        monto: Int!
+        nota_adicional: String
+        comprobante_pdf: String
+        nota_adicional_comprobante: String
+        creada_por: String!
+        actualizada_por: String
+        createdAt: String!
+        updatedAt: String!
+        "Cantidad de reservas actualizadas a facturadas" reservasActualizadas: Int!
+    }
 `;
 
 module.exports = {

@@ -35,14 +35,27 @@ const facturaFuncMutation = {
         factura_modificada.nota_adicional_comprobante = comprobanteInput.nota_adicional_comprobante;
         factura_modificada.actualizada_por = comprobanteInput.actualizada_por;
 
-        //TODO (atenciones):
-        //actualizar atenciones, facturadas --> true:
-        //- fecha sea menor a la de creación factura
-        //- pertenezcan al médico de facura
-        //- esten pagadas
+        const ReservaModel = require('../../models/reservaModel');
 
+        // Actualiza las reservas que cumplen con los criterios:
+        // pagado, atendido del médico, con fecha previa a factura
+        const reservasChanged = await ReservaModel.updateMany(
+            {
+                fecha: { $lt: factura_modificada.createdAt },
+                id_medico: factura_modificada.id_medico,
+                pagado: 1,
+                atendido: 1
+            },
+            {
+                $set: { facturado: 1 }
+            }
+        );
+
+        //guarda factura actualizada y retorna cuantas atenciones se modificaron
+        // TODO OPCIONAL: verificar cantidad facturada es la misma que cambiada y en caso contrario avisar por correo o dejar log
         await factura_modificada.save();
-        return factura_modificada;
+        const result = {...factura_modificada._doc, reservasActualizadas: reservasChanged.modifiedCount};
+        return result
     }
 }
 

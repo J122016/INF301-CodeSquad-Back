@@ -285,6 +285,13 @@ mutation MarcarPagado($buscareserva: RutFechaInput) {
     mensaje
   }
 }
+
+query GetReporteAtencionesEfectuadasPorDia($inicio: FechaInput, $fin: FechaInput) {
+  getReporteAtencionesEfectuadasPorDia(inicio: $inicio, fin: $fin) {
+    atenciones
+    dia
+  }
+}
 ```
 
 **Variables**
@@ -377,6 +384,12 @@ mutation MarcarPagado($buscareserva: RutFechaInput) {
   },
   "dia": {
     "fecha": "2024-05-27"
+  },
+  "inicio": {
+    "fecha": "2024-04-01"
+  },
+  "fin": {
+    "fecha": "2024-07-12"
   }
 }
 ```
@@ -423,6 +436,8 @@ mutation UpdateFactura($comprobanteInput: ComprobanteInput) {
     nota_adicional_comprobante
     monto
     comprobante_pdf
+    numero_atenciones
+    reservasActualizadas
   }
 }
 
