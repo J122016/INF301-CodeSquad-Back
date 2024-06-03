@@ -10,7 +10,6 @@ const facturaMutation = `
     "Anexar comprobante pago comisión a factura con id conocido, marca atenciones como facturadas"
     updateFactura(comprobanteInput: ComprobanteInput): FacturaReservasMod
     `;
-    //deleteEntity(id: String!): Mensaje
 
 module.exports = {
     facturaMutation

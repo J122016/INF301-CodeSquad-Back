@@ -470,6 +470,21 @@ query GetFacturas {
   }
 }
 
+# variación con entradas filtro opcionales (c/u)
+query GetFacturas{
+  getFacturas(filters: {
+    inicio: "2022-01-01"
+    final: "2025-01-31"
+    id_medico: "665353a188904508244f4bd9"
+  }) {
+    id,
+    id_medico,
+    creada_por,
+    createdAt,
+    monto
+  }
+}
+
 query GetFactura($getFacturaId: String!) {
   getFactura(id: $getFacturaId) {
     id
@@ -516,7 +531,7 @@ mutation anularFactura($deleteFacturaId: String!) {
 query GetReporteComisionesMedicosPorDia ($fechaInicio: String!, $fechaFinal: String!){
   getReporteComisionesMedicosPorDia(fecha_inicio: $fechaInicio, fecha_final: $fechaFinal) {
     id_medico
-    comision
+    comision_monto
   }
 }
 ```

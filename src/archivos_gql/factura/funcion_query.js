@@ -8,9 +8,21 @@ const facturaFuncQuery = {
         const entity = await FacturaModel.findById(id);
         return entity;
     },
-    async getFacturas(obj, { id }) {
-        const entity = await FacturaModel.find();
-        return entity;
+    
+    async getFacturas(obj, { filters }) {
+        const startDate = new Date(filters?.inicio || '1900-01-01');
+        const endDate = new Date(filters?.final || new Date());
+        let filter = {
+            createdAt: { 
+                $gte: isNaN(startDate) ? new Date(1900, 0, 1) : startDate,
+                $lte: isNaN(endDate) ? new Date() : endDate
+            }
+        };
+        if (filters?.id_medico) {
+            filter.id_medico = filters.id_medico
+        }
+        const entities = await FacturaModel.find(filter);
+        return entities;
     },
     
     
@@ -62,14 +74,14 @@ const facturaFuncQuery = {
         const reporte = [];
 
         for (const id_medico of id_medicos) {
-            const comision = []; //arreglo de comisiones por día con monto desde boleta asociada a reserva
+            const comision_monto = []; //arreglo de comisiones por día con monto desde boleta asociada a reserva
             for (let date = startDate; date <= endDate; date.setDate(date.getDate() + 1)) {
             const dayReservas = reservas.filter(r => r.fecha.toDateString() === date.toDateString() && r.id_medico === id_medico);
             const dayBoletas = boletas.filter(b => dayReservas.some(r => r.id === b.id_atencion));
             const monto = dayBoletas.reduce((acc, b) => acc + b.monto, 0);
-            comision.push(monto);
+            comision_monto.push(monto);
             }
-            reporte.push({ id_medico, comision });
+            reporte.push({ id_medico, comision_monto });
         }
 
         return reporte;

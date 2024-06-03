@@ -1,8 +1,8 @@
 // definitions of queries, more details in funcion_query.js
 
 const facturaQuery = `
-    "Obtener todas las facturas"
-    getFacturas: [Factura]
+    "Obtener facturas filtradas o todas por defecto"
+    getFacturas(filters: OptionalFilters): [Factura]
     
     "Obtener factura especifica con dado id"
     getFactura(id: String!): Factura

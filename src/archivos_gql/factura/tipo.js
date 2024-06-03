@@ -43,7 +43,7 @@ const facturaTipo = `
     "Estadísticas para reporte"
     type ReporteAtencionesEfectuadasPorDia {
         id_medico: String!
-        comision: [Float!]
+        comision_monto: [Float!]
     }
 `;
 

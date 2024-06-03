@@ -17,6 +17,13 @@ const facturaInput = `
         "nota opcional"                     nota_adicional_comprobante: String!
         "id usuario que actualiza"          actualizada_por: String!
     }
+
+    "Estructura auxiliar contenedora de filtros opcionales"
+    input OptionalFilters{
+        "fecha corte de inicio"             inicio:String
+        "fecha corte final"                 final:String
+        "id de médico a buscar"             id_medico: String
+    }
 `;
 
 module.exports = {
