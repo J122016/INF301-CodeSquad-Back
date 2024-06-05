@@ -39,7 +39,7 @@ const facturaFuncQuery = {
         // sacando id de reservas a facturar
         const reservasIds = reservas.map(reserva => reserva._id);
 
-        // TO DO (first update from main):  consultando por boletas asociadas
+        // consultando por boletas asociadas
         const boletas = await BoletasModel.find({
             id_atencion: { $in: reservasIds }
         });
