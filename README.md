@@ -108,8 +108,6 @@ Para tener en consideración y resolver próximamente.
 
 - Verificar que todas las funciones ingresen ID de usuarios existentes.
 
-- Estandarizar PascalCase para nombres de funciones boletas
-
 - Definir campo `nrol` como único en modelo Rol.
 
 - Definir campo `id_atencion` como único en modelo Boleta; de lo contrario se puede pagar multiples veces una hora.
