@@ -1,10 +1,9 @@
 const ReservaModel = require('../../models/reservaModel');
 
 const reservafuncmutation = {
-    async crearReserva(obj, { input }) {
+    async crearReserva(obj, rut, reserva ) {
         const blanco = { atendido: 0, facturado: 0, pagado: 0 };
-        Object.assign(input, blanco);
-        const entity = new ReservaModel(input);
+        const entity = new ReservaModel({...reserva, ...rut, ...blanco});
 
         // Reserva Hora
         try {
@@ -17,14 +16,14 @@ const reservafuncmutation = {
         return {id: entity.id,mensaje:"Reserva Creada"}
     },
 
-    async modificarReserva (obj, { input, update } ) {
-        // { rut, fecha } = search
+    async modificarReserva (obj, RutFechaSearch, DataUpdate) {
+        // { rut, fecha } = RutFechaSearch
         // ReservaModel ( update )
 
         try {
             const updatedReserva = await ReservaModel.findOneAndUpdate(
-                input,       // Rut y Fecha
-                update,
+                RutFechaSearch,       // Rut y Fecha
+                DataUpdate,
                 { new: true } // opt: Devuelve el documento actualizado
             );
 
@@ -39,10 +38,9 @@ const reservafuncmutation = {
     },
 
     // Cancela reserva especifica dado paciente, medico, día y hora
-    async cancelarReserva(obj, { input, reserva } ) {
-        const search = {...input, ...reserva}
-        console.log("rut, fecha, hora, id_medico", search)
-        const pop = await ReservaModel.findOneAndDelete( search );
+    async cancelarReserva(obj, rut, reserva ) {
+        // console.log("rut, fecha, hora, id_medico", search)
+        const pop = await ReservaModel.findOneAndDelete( {...rut, ...reserva} );
         if (!pop) {
             return {mensaje:"Reserva No anulada"};
         }
@@ -62,9 +60,8 @@ const reservafuncmutation = {
     },
 
     //Para acceder a atencion requiere pagar previamente
-    async marcaratendido(obj, { input, reserva  } ) {
-        const search = {...input, ...reserva}
-        const target = await ReservaModel.findOne(search)
+    async marcaratendido(obj, rut, reserva) {
+        const target = await ReservaModel.findOne({...rut, ...reserva})
         if (target.pagado == 0) {
             return {mensaje:"Error efectando el cambio. Requiere pago previo."};
         }

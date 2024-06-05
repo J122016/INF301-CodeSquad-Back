@@ -1,6 +1,5 @@
 const reservainput = `
     input ReservaInput{
-        rut: String!
         fecha: String!
         hora: String!
         id_medico : String!
@@ -24,10 +23,8 @@ const reservainput = `
         fecha: String!
     }
 
-    input modreservapaciente {
+    input Fecha {
         fecha: String!
-        hora: String!
-        id_medico: String!
     }
 `;
 
