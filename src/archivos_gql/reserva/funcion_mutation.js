@@ -60,7 +60,7 @@ const reservafuncmutation = {
     },
 
     //Para acceder a atencion requiere pagar previamente
-    async marcaratendido(obj, rut, reserva) {
+    async marcarAtendido(obj, rut, reserva) {
         const target = await ReservaModel.findOne({...rut, ...reserva})
         if (target.pagado == 0) {
             return {mensaje:"Error efectando el cambio. Requiere pago previo."};
