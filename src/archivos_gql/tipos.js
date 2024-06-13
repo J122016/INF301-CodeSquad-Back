@@ -5,6 +5,7 @@ const { agendatipo } = require('./agenda/tipo')
 const { facturaTipo } = require('./factura/tipo')
 const { reservatipo } = require('./reserva/tipo')
 const { boletaTipo } = require('./boleta/tipo')
+const { atencionTipo } = require('./atencion/tipo');
 
 const tiposgql = `
     ${modelonetipo}
@@ -14,6 +15,7 @@ const tiposgql = `
     ${facturaTipo}
     ${reservatipo}
     ${boletaTipo}
+    ${atencionTipo} 
     type Mensaje {
         id: ID!
         mensaje: String!

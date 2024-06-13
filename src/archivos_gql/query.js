@@ -5,6 +5,7 @@ const { agendaquery } = require('./agenda/query')
 const { facturaQuery } = require('./factura/query')
 const { reservaquery } = require('./reserva/query')
 const { boletaQuery } = require('./boleta/query')
+const { atencionQuery } = require('./atencion/query')
 
 const querygql = `
     type Query {
@@ -15,6 +16,7 @@ const querygql = `
         ${facturaQuery}
         ${reservaquery}
         ${boletaQuery}
+        ${atencionQuery}
     }
 `;
 

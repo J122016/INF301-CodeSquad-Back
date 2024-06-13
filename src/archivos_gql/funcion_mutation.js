@@ -5,7 +5,7 @@ const { agendafuncmutation } = require('./agenda/funcion_mutation');
 const { facturaFuncMutation } = require('./factura/funcion_mutation');
 const { reservafuncmutation } = require('./reserva/funcion_mutation');
 const { boletaFuncMutation } = require('./boleta/funcion_mutation');
-
+const { atencionFuncionMutation } = require('./atencion/funcion_mutation');
 const funcionmutation = {};
 
 Object.assign(funcionmutation,modelonefuncmutation);
@@ -15,6 +15,7 @@ Object.assign(funcionmutation,agendafuncmutation);
 Object.assign(funcionmutation,facturaFuncMutation);
 Object.assign(funcionmutation,reservafuncmutation);
 Object.assign(funcionmutation,boletaFuncMutation);
+Object.assign(funcionmutation, atencionFuncionMutation);
 
 module.exports = {
     funcionmutation

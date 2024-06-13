@@ -16,7 +16,7 @@ const { funcionquery } = require('./archivos_gql/funcion_query')
 const { funcionmutation } = require('./archivos_gql/funcion_mutation')
 
 // Connect to MongoDB database
-const mongo_url = "mongodb+srv://CodeSquadDevAdmin:vQpkNv91hajyyVSd@cluster0free.losq0cb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0Free";
+const mongo_url = "mongodb+srv://manuelvargas612:gCoYuFWlJPfBzBdM@cluster0.yrxxtim.mongodb.net/";
 mongoose.connect(mongo_url, { useNewUrlParser: true, useUnifiedTopology: false });
 
 // Define GraphQL schema

@@ -3,9 +3,9 @@ const { usuariofuncquery } = require('./usuario/funcion_query');
 const { rolfuncquery } = require('./rol/funcion_query');
 const { agendafuncquery } = require('./agenda/funcion_query');
 const { facturaFuncQuery } = require('./factura/funcion_query');
-
 const { reservasfuncquery } = require('./reserva/funcion_query');
-const { boletaFuncQuery } = require('./boleta/funcion_query')
+const { boletaFuncQuery } = require('./boleta/funcion_query');
+const { atencionFuncionQuery } = require('./atencion/funcion_query');
 
 const funcionquery = {};
 
@@ -16,6 +16,7 @@ Object.assign(funcionquery,agendafuncquery);
 Object.assign(funcionquery,facturaFuncQuery);
 Object.assign(funcionquery,reservasfuncquery);
 Object.assign(funcionquery,boletaFuncQuery);
+Object.assign(funcionquery, atencionFuncionQuery);
 
 module.exports = {
     funcionquery

@@ -5,6 +5,7 @@ const { agendautation } = require('./agenda/mutation')
 const { facturaMutation } = require('./factura/mutation')
 const { reservamutation } = require('./reserva/mutation')
 const { boletaMutation } = require('./boleta/mutation')
+const { atencionMutation } = require('./atencion/mutation')
 
 const mutationgql = `
     type Mutation {
@@ -15,6 +16,7 @@ const mutationgql = `
         ${facturaMutation}
         ${reservamutation}
         ${boletaMutation}
+        ${atencionMutation}
     }
 `;
 
