@@ -1,9 +1,9 @@
 const reservamutation = `
     crearReserva(input: ReservaInput): Mensaje
-    modificarReserva( input: RutFechaInput!, update: modreservapaciente): Mensaje
-    cancelarReserva( input: RutInput, reserva: modreservapaciente ): Mensaje3
-    marcarPagado( input: RutInput, reserva: modreservapaciente ): Mensaje3
-    marcaratendido( input: RutInput, reserva: modreservapaciente ): Mensaje3
+    modificarReserva( input: RutFechaInput!, update: ReservaInput): Mensaje
+    cancelarReserva( input: RutInput, reserva: ReservaInput ): Mensaje3
+    marcarPagado( input: RutInput, reserva: ReservaInput ): Mensaje3
+    marcarAtendido( input: RutInput, reserva: ReservaInput ): Mensaje3
 `;
 
 module.exports = {
