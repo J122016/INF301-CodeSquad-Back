@@ -19,7 +19,7 @@ const tiposgql = `
         mensaje: String!
     }
     type Mensaje2 {
-        id: ID!
+        rut: String!
         nrol: String!
         mensaje: String!
     }

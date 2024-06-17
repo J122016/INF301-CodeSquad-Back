@@ -95,7 +95,7 @@ query Query($getEntityId: String!) {
 }
 ```
 
-## Issues implementación
+## Issues conocidas
 
 Para tener en consideración y resolver próximamente.
 
@@ -117,3 +117,5 @@ Para tener en consideración y resolver próximamente.
 - Manejo de bloqueo de una agenda donde existen atenciones registradas en `addAgenda` y similares.
 
 - Revisar `ModificarReserva` para modificar una reserva si paciente tiene más de una para un día (añadir campo hora o médico), no ocurre con `CancelarReserva` ni `Marcaratendido`.
+
+- Mejorar `login` para en caso correcto, retornar data adicional evitando hacer 2 queries más por datos adicionales de usuarios y nombre del rol.
