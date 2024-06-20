@@ -21,13 +21,11 @@ const usuariofuncmutation = {
     },
     async deleteUsuario(obj,input) {
         const { rut } = input
-        const entitys = await UsuarioModel.find();
-        const entity = entitys.find((a) => a.rut == rut);
-        const { id } = await entity.delete();
-        if (!id) {
+        const us = await UsuarioModel.findOneAndDelete({ rut: rut });
+        if (!us) {
             throw new Error(`Usuario de rut ${rut} no encontrado`);
         }
-        return {id: id, mensaje: 'Usuario de rut ' + rut + ' fue eliminado'};
+        return {id: us.id, mensaje: 'Usuario de rut ' + rut + ' fue eliminado'};
     }
 }
 
