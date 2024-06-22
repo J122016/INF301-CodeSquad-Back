@@ -91,6 +91,19 @@ query GetUsuarios {
   }
 }
 
+# Obtener usuario especifico dado su id
+query GetUsuario($id_medico: String!) {
+  getUsuario(id: $id_medico) {
+    id
+    usuario
+    pass
+    nombre
+    rut
+    mail
+    nrol
+  }
+}
+
 # Obtener usuario especifico dado su rut
 # - nota: ejemplo rut no existente: 12345678-0 
 query GetUsuarioRut {
@@ -773,6 +786,7 @@ Conjunto de variables reutilizadas para las operaciones anteriores.
   "deleteFacturaId": "6653fdb393c85d7ea0e30b40",
   "medicoId": "665353a188904508244f4bd9",
   "fechaInicio": "2024-05-01",
-  "fechaFinal": "2024-07-12"
+  "fechaFinal": "2024-07-12",
+  "id_medico": "665353a188904508244f4bd9"
 }
 ```

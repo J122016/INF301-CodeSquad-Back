@@ -5,6 +5,10 @@ const usuariofuncquery = {
         const entity = await UsuarioModel.find();
         return entity;
     },
+    async getUsuario(obj, { id }) {
+        const entity = await UsuarioModel.findById(id);
+        return entity;
+    },
     async getUsuarioRol(obj, { input }) {
         const { nrol } = input;
         const entitys = await UsuarioModel.find();
