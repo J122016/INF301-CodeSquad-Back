@@ -2,8 +2,10 @@ const ReservaModel = require('../../models/reservaModel');
 
 const reservasfuncquery = {
     // Obtiene Todas las Reservas de un CLIENTE segun Rut
-    async getReservasCliente(obj, rut) {
-        const reservas = await ReservaModel.find(rut);
+    async getReservasCliente(obj, { input }) {
+        const { rut } = input;
+        const reserva = await ReservaModel.find();
+        const reservas = reserva.filter((a) => a.rut == rut);
         return reservas;
     },
 
