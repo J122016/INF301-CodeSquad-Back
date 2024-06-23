@@ -1,9 +1,10 @@
 const ReservaModel = require('../../models/reservaModel');
 
 const reservafuncmutation = {
-    async crearReserva(obj, rut, reserva ) {
+    async crearReserva(obj, {rut, reserva} ) {
+        const { fecha, hora, id_medico } = reserva;
         const blanco = { atendido: 0, facturado: 0, pagado: 0 };
-        const entity = new ReservaModel({...reserva, ...rut, ...blanco});
+        const entity = new ReservaModel({rut: rut,fecha: fecha, hora:hora, id_medico: id_medico, ...blanco});
 
         // Reserva Hora
         try {
@@ -37,6 +38,27 @@ const reservafuncmutation = {
         }
     },
 
+    async modificarReserva2 (obj, {id, update}) {
+        // { rut, fecha } = RutFechaSearch
+        // ReservaModel ( update )
+
+        try {
+            const updatedReserva = await ReservaModel.findByIdAndUpdate(
+                id,       // Rut y Fecha
+                update,
+                { new: true } // opt: Devuelve el documento actualizado
+            );
+
+            if (!updatedReserva) {
+                throw new Error('Reserva no encontrada');
+            }
+            return {id: updatedReserva.id,mensaje:"Reserva Modificada"};
+        } catch (error) {
+            console.error('Error al actualizar la reserva:', error);
+            return {id: "0",mensaje:"Reserva No Modificada"};
+        }
+    },
+
     // Cancela reserva especifica dado paciente, medico, día y hora
     async cancelarReserva(obj, rut, reserva ) {
         // console.log("rut, fecha, hora, id_medico", search)
@@ -45,6 +67,16 @@ const reservafuncmutation = {
             return {mensaje:"Reserva No anulada"};
         }
         return {mensaje:"Reserva Anulada"};
+    },
+
+    // Cancela reserva especifica dado paciente, medico, día y hora
+    async cancelarReserva2(obj, {id} ) {
+        // console.log("rut, fecha, hora, id_medico", search)
+        const pop = await ReservaModel.findByIdAndDelete( id );
+        if (!pop) {
+            return {id: id,mensaje:"Reserva No anulada"};
+        }
+        return {id: id,mensaje:"Reserva Anulada"};
     },
 
     /**
